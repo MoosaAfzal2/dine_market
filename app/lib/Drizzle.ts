@@ -1,16 +1,17 @@
-// import { pgTable, serial, varchar } from "drizzle-orm/pg-core"
-// import { InferModel } from "drizzle-orm"
-// import { drizzle } from "drizzle-orm/vercel-postgres"
-// import { sql } from "@vercel/postgres"
+import { integer, pgTable, varchar } from "drizzle-orm/pg-core"
+import { InferModel } from "drizzle-orm"
+import { drizzle } from "drizzle-orm/vercel-postgres"
+import { sql } from "@vercel/postgres"
 
-// export const TodoTable = pgTable("todos", {
-//     id: serial("id").primaryKey(),
-//     Task: varchar("task", { length: 255 }).notNull()
-// })
+export const OrdersTable = pgTable("orders", {
+    id: varchar("id", { length: 255 }).primaryKey().notNull(),
+    title: varchar("title", { length: 255 }).notNull(),
+    quantity: integer("quantity").notNull(),
+    sub_total: integer("sub_total").notNull()
+})
 
 
-// export type TodoType = InferModel<typeof TodoTable>
-// export type NewTodoType = InferModel<typeof TodoTable, "insert">
+export type OrderType = InferModel<typeof OrdersTable>
+export type NewOrderType = InferModel<typeof OrdersTable, "insert">
 
-// export const db = drizzle(sql)
-// // db.insert(TodoTable).values
+export const db = drizzle(sql)
