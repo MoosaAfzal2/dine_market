@@ -1,4 +1,4 @@
-import Quantity from "@/app/shared/quantity";
+import Quantity from "@/app/shared/Quantity";
 import { client } from "@/sanity/lib/client"
 import { urlForImage } from "@/sanity/lib/image"
 import Image from "next/image"
