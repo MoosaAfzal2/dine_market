@@ -48,7 +48,7 @@ const Products = async ({ params }: { params: { products: string } }) => {
                     const href = "/product/" + items.title.split(" ").join("-");
                     const image_url = urlForImage(items.image[0].asset._ref).url();
                     return (
-                        <Link className="mx-auto space-y-2" href={href}>
+                        <Link key={items._id} className="mx-auto space-y-2" href={href}>
                             <Image width="250" height="270" unoptimized={true} src={image_url} alt="" />
                             <h3 className="font-semibold">{items.title}</h3>
                             <h5 className="text-[#888] text-[0.90rem] font-semibold">{items.category}</h5>
