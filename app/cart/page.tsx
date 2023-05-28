@@ -16,7 +16,7 @@ const Cart = () => {
                             <div className="w-full space-y-4">
                                 <div className="flex justify-between">
                                     <h2 className="text-xl text-[#212121] font-light">Cameryn Sash Tie Dress</h2>
-                                    <HiOutlineTrash size={30} />
+                                    <HiOutlineTrash className="cursor-pointer" size={30} />
                                 </div>
                                 <h4 className="font-medium text-[#666]">Dress</h4>
                                 <h4 className="font-medium">Delivery Estimation</h4>
