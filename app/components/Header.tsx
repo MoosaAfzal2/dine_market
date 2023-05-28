@@ -1,6 +1,6 @@
 import Image from "next/image"
 import Logo from "@/public/Logo.png"
-import { CiSearch } from "react-icons/Ci"
+import { CiSearch } from "react-icons/ci"
 import { FiShoppingCart } from "react-icons/fi"
 import { RiMenu3Fill } from "react-icons/ri"
 import Link from "next/link"
