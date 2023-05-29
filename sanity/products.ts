@@ -22,16 +22,24 @@ export const products = {
                 ],
             },
         },
+        // {
+        //     name: "gender",
+        //     title: "For Gender",
+        //     type: "string",
+        //     options: {
+        //         list: [
+        //             { title: 'Male', value: 'Male' },
+        //             { title: 'Female', value: 'Female' },
+        //         ],
+        //     },
+        // },
         {
             name: "gender",
             title: "For Gender",
-            type: "string",
-            options: {
-                list: [
-                    { title: 'Male', value: 'Male' },
-                    { title: 'Female', value: 'Female' },
-                ],
-            },
+            type: 'reference',
+            to: [
+                { type: "category" }
+            ]
         },
         {
             name: "price",

@@ -20,22 +20,22 @@ const Products = async ({ params }: { params: { products: string } }) => {
                 _id,
                 title,
                 category,
-                gender,
+                gender->{name},
                 price,
                 product_care,
                 image
               }`)
             return await res
         } else {
-            const res = await client.fetch(`*[_type=='products' && gender=='${params.products}']{
+            const res = await client.fetch(`*[_type=='products' && gender->name==$forgender]{
                 _id,
                 title,
                 category,
-                gender,
+                gender->{name},
                 price,
                 product_care,
                 image
-              }`)
+              }`,{forgender :params.products})
             return await res
         }
 

@@ -1,8 +1,7 @@
-import Quantity from "@/app/shared/Quantity";
+import AddOrder from "@/app/shared/AddOrder"
 import { client } from "@/sanity/lib/client"
 import { urlForImage } from "@/sanity/lib/image"
 import Image from "next/image"
-import { FiShoppingCart } from "react-icons/fi";
 
 const GetSanityData = async (title: string) => {
     const res = await client.fetch(`*[_type=='products' && title=='${title}']{
@@ -17,6 +16,7 @@ const GetSanityData = async (title: string) => {
       }`)
     return await res
 }
+
 
 const ProductDetails = async ({ params }: { params: { id: string } }) => {
     const data = await GetSanityData(params.id.split("-").join(" "))
@@ -54,16 +54,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
                                 ))}
                             </div>
                         </div>
-                        <div className="flex gap-5 items-center">
-                            <h4 className="font-bold">Quantity:</h4>
-                            <Quantity />
-                        </div>
-                        <div className="flex items-center gap-3">
-                            <button className="flex justify-center items-center gap-x-3 bg-black text-white text-sm font-semibold sm:px-14 px-2 py-3 max-sm:w-2/5">
-                                <FiShoppingCart className="shrink-0" color="white" size={20} /> Add to Cart
-                            </button>
-                            <h3 className="text-2xl font-bold tracking-widest">${data[0].price}</h3>
-                        </div>
+                        <AddOrder data={data} />
                     </div>
                 </div>
             </div>

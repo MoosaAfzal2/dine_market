@@ -1,16 +1,12 @@
 import { NextRequest, NextResponse } from "next/server";
-// import { db } from "@vercel/postgres";
 import { db, OrdersTable, OrderType, NewOrderType } from "@/app/lib/Drizzle";
-import { sql } from "@vercel/postgres"
+import { randomUUID } from "crypto";
+import { cookies } from "next/dist/client/components/headers";
+import { eq } from "drizzle-orm";
 
 export async function GET(request: NextRequest) {
-    // const client = await db.connect()
     try {
-        // const data = await sql`SELECT * from orders`;
-        // await sql`TRUNCATE orders`
-        const data: OrderType[] = await db.select().from(OrdersTable)
-        console.log(data);
-
+        const data: OrderType[] = await db.select().from(OrdersTable).where(eq(OrdersTable.user_id, cookies().get("user_id")?.value as string))
         return NextResponse.json({ data })
     }
     catch (error) {
@@ -21,22 +17,25 @@ export async function GET(request: NextRequest) {
 
 
 export async function POST(request: NextRequest) {
-    // const client = await db.connect()
     const req = await request.json()
+    console.log(req);
+    const user_id = randomUUID()
+    if (!cookies().get("user_id")?.value) {
+        cookies().set("user_id", user_id)
+    }
+
     try {
-        if (req.id) {
-            // await sql`INSERT INTO Todos (Task) VALUES(${req.Task})`
+        if (cookies().get("user_id")?.value) {
             const data: NewOrderType[] = await db.insert(OrdersTable).values({
-                id: "123",
-                title: "Brushed Raglan Sweatshirt",
-                quantity: 1,
-                sub_total: 195
+                product_id: req.product_id,
+                user_id: cookies().get("user_id")?.value as string,
+                quantity: req.quantity,
             }).returning()
 
             return NextResponse.json({ message: "Task Added Successfully!", data })
         }
         else {
-            throw new Error("Task field is Required")
+            throw new Error("Orders field is Required")
         }
     }
     catch (error) {

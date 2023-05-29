@@ -1,9 +1,21 @@
 import Image from "next/image"
 import image from "@/public/header.png"
-import Quantity from "@/app/shared/Quantity"
 import { HiOutlineTrash } from "react-icons/hi"
 
-const Cart = () => {
+const Cart = async () => {
+
+    const GetOrders = async () => {
+        try {
+            const res = await fetch("http://127.0.0.1:3000/api/Orders")
+            return await res.json()
+        }
+        catch (err) {
+            console.log(err)
+        }
+    }
+
+    console.log(await GetOrders())
+
     return (
         <main className="py-8 2xl:px-32 xl:px-24 md:px-16 px-8">
             <div className="max-w-screen-2xl mx-auto">
@@ -23,7 +35,7 @@ const Cart = () => {
                                 <h4 className="font-medium text-[#ffc700]">5 Working Days</h4>
                                 <div className="flex justify-between">
                                     <h4 className="text-xl tracking-widest font-semibold">$545</h4>
-                                    <Quantity />
+                                    {/* <Quantity /> */}
                                 </div>
                             </div>
                         </div>
