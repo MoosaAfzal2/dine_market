@@ -17,10 +17,10 @@ const Promotions = () => {
                         </div>
                         <Image className="place-self-end xl:mr-8" src={event1} width={180} alt="event1" />
                     </div>
-                    <div className="text-white text-center bg-black/90 px-8 py-8 pt-12">
+                    <div className="text-white text-center bg-black/90 min-[450px]:px-8 px-2 py-8 pt-12">
                         <h2 className="text-4xl font-semibold">GET 30% Off</h2>
                         <h5 className="text-sm mt-4 mb-1">USE PROMO CODE</h5>
-                        <h3 className="mx-auto bg-[#474747] font-semibold w-fit tracking-[0.3rem] px-12 py-1.5 rounded-lg">DINEWEEKENDSALE</h3>
+                        <h3 className="mx-auto bg-[#474747] font-semibold w-fit tracking-[0.3rem] min-[450px]:px-12 px-2 py-1.5 rounded-lg">DINEWEEKENDSALE</h3>
                     </div>
                 </div>
                 <div className="flex sm:flex-row flex-col gap-4">

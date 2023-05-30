@@ -2,13 +2,13 @@ import Image from "next/image"
 import Logo from "@/public/Logo.png"
 import { CiSearch } from "react-icons/ci"
 import { FiShoppingCart } from "react-icons/fi"
-import { RiMenu3Fill } from "react-icons/ri"
 import Link from "next/link"
+import MobileHeader from "./MobileHeader"
 
 const Header = () => {
     return (
-        <header className="flex items-center justify-between py-8 2xl:px-32 xl:px-24 md:px-16 px-8">
-            <Link href="/">
+        <header className="relative flex items-center justify-between py-8 2xl:px-32 xl:px-24 md:px-16 px-8">
+            <Link className="z-10" href="/">
                 <Image src={Logo} alt="Logo" />
             </Link>
             <ul className="flex text-lg gap-x-10 max-lg:hidden">
@@ -26,7 +26,7 @@ const Header = () => {
                 <span className="flex items-center justify-center text-white text-xs w-4 h-4 bg-red-500 absolute right-0 top-0 rounded-full">0</span>
             </Link>
             {/* Menu */}
-            <RiMenu3Fill size={30} className="lg:hidden" />
+           <MobileHeader />
         </header>
     )
 }

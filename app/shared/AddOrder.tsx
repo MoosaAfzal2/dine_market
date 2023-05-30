@@ -2,16 +2,22 @@
 import { FiShoppingCart } from 'react-icons/fi'
 import Quantity from './Quantity'
 import { useState } from 'react'
+import { urlForImage } from '@/sanity/lib/image'
 
 const AddOrder = ({ data }: { data: any }) => {
     const [quantity, setquantity] = useState(1)
     const AddOrder = async () => {
         try {
+            const image_url = urlForImage(data[0].image[0].asset._ref).url();
             const res = await fetch("/api/Orders", {
                 method: "POST",
                 body: JSON.stringify({
                     product_id: data[0]._id,
-                    quantity: quantity
+                    title: data[0].title,
+                    category: data[0].category,
+                    quantity: quantity,
+                    price: data[0].price,
+                    image_url: image_url
                 })
             })
             return await res.json()

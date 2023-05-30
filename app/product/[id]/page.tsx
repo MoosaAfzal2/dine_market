@@ -30,7 +30,7 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
                             const image_url = urlForImage(item.asset._ref).url();
                             return (
                                 <div key={i}>
-                                    <Image width="115" height="100" unoptimized={true} src={image_url} alt="" />
+                                    <Image width="115" height="100" src={image_url} alt="" />
                                 </div>
                             )
                         })}
