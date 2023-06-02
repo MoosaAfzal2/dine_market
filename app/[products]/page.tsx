@@ -35,12 +35,13 @@ const Products = async ({ params }: { params: { products: string } }) => {
                 price,
                 product_care,
                 image
-              }`,{forgender :params.products})
+              }`, { forgender: params.products })
             return await res
         }
 
     }
     const data = await GetSanityData()
+
     return (
         <main className="py-8 2xl:px-32 xl:px-24 md:px-16 px-8">
             <div className="grid justify-center items-center xl:grid-cols-4 lg:grid-cols-3 min-[600px]:grid-cols-2 grid-cols-1 md:gap-16 gap-6">

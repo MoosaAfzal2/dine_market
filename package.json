@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@clerk/nextjs": "^4.19.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.11.3",
     "@types/node": "20.2.3",
@@ -24,6 +25,7 @@
     "postcss": "8.4.23",
     "react": "18.2.0",
     "react-dom": "18.2.0",
+    "react-hot-toast": "^2.4.1",
     "react-icons": "^4.8.0",
     "sanity": "^3.11.3",
     "swiper": "^9.3.2",

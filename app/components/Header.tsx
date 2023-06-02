@@ -4,6 +4,7 @@ import { CiSearch } from "react-icons/ci"
 import { FiShoppingCart } from "react-icons/fi"
 import Link from "next/link"
 import MobileHeader from "./MobileHeader"
+import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 const Header = () => {
     return (
@@ -21,12 +22,28 @@ const Header = () => {
                 <CiSearch size={15} />
                 <input className="grow placeholder-black text-[0.80rem] leading-none px-1 py-1.5" type="search" placeholder="What you looking for" />
             </div>
-            <Link href="/cart" className="bg-slate-200 relative rounded-full p-3 max-lg:hidden">
-                <FiShoppingCart strokeWidth="2.5" size={20} />
-                <span className="flex items-center justify-center text-white text-xs w-4 h-4 bg-red-500 absolute right-0 top-0 rounded-full">0</span>
-            </Link>
+
+            <div className="flex items-center gap-4">
+                <div>
+                    <SignedIn>
+                        <UserButton afterSignOutUrl="/" />
+                    </SignedIn>
+                    <SignedOut>
+                        <Link href="/sign-in">
+                            <button className="border text-sm px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white transition-all duration-300">Sign in</button>
+                        </Link>
+                    </SignedOut>
+
+                </div>
+
+                <Link href="/cart" className="bg-slate-200 relative rounded-full p-3 max-lg:hidden">
+                    <FiShoppingCart strokeWidth="2.5" size={20} />
+                    <span className="flex items-center justify-center text-white text-xs w-4 h-4 bg-red-500 absolute right-0 top-0 rounded-full">0</span>
+                </Link>
+            </div>
+
             {/* Menu */}
-           <MobileHeader />
+            <MobileHeader />
         </header>
     )
 }
