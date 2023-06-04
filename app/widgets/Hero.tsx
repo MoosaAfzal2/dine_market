@@ -5,6 +5,7 @@ import Featured2 from "@/public/Featured2.png"
 import Featured3 from "@/public/Featured3.png"
 import Featured4 from "@/public/Featured4.png"
 import { FiShoppingCart } from "react-icons/fi"
+import Link from "next/link"
 
 const Hero = () => {
     return (
@@ -16,9 +17,11 @@ const Hero = () => {
                 </div>
                 <h1 className="sm:text-6xl text-5xl font-bold">An Industrial Take on Streetwear</h1>
                 <p className="text-slate-600 max-w-lg">Anyone can beat you but no one can beat your outfit as long as you wear Dine outfits.</p>
-                <button className="lg:w-fit min-[410px]:w-2/4 w-3/4 flex justify-center items-center gap-x-3 bg-black text-white font-semibold sm:px-16 px-2 py-5">
-                    <FiShoppingCart className="shrink-0" color="white" size={25} /> Start Shopping
-                </button>
+                <Link href="/products">
+                    <button className="lg:w-fit min-[410px]:w-2/4 w-3/4 flex justify-center items-center gap-x-3 bg-black text-white font-semibold sm:px-16 px-2 py-5">
+                        <FiShoppingCart className="shrink-0" color="white" size={25} /> Start Shopping
+                    </button>
+                </Link>
                 <div className="grid sm:grid-cols-4 grid-cols-2 gap-x-3 h-full items-end">
                     <Image width={100} className="h-fit" src={Featured1} alt="" />
                     <Image width={100} className="h-fit" src={Featured2} alt="" />

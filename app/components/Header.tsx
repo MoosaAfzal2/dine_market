@@ -4,7 +4,7 @@ import { CiSearch } from "react-icons/ci"
 import { FiShoppingCart } from "react-icons/fi"
 import Link from "next/link"
 import MobileHeader from "./MobileHeader"
-import { SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
 
 const Header = () => {
     return (
@@ -29,11 +29,10 @@ const Header = () => {
                         <UserButton afterSignOutUrl="/" />
                     </SignedIn>
                     <SignedOut>
-                        <Link href="/sign-in">
+                        <SignInButton mode="modal">
                             <button className="border text-sm px-4 py-2 rounded-md hover:bg-blue-700 hover:text-white transition-all duration-300">Sign in</button>
-                        </Link>
+                        </SignInButton>
                     </SignedOut>
-
                 </div>
 
                 <Link href="/cart" className="bg-slate-200 relative rounded-full p-3 max-lg:hidden">

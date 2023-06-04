@@ -11,8 +11,7 @@ export default function Home() {
       <Hero />
       {/* Promotions Section */}
       <Promotions />
-      {/* Products Section */}
-      {/* @ts-ignore */}
+      {/* @ts-ignore Products Section */}
       <Products />
       {/* DifferentFromOthers Section */}
       <DifferentFromOthers />

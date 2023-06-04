@@ -4,8 +4,14 @@ import Quantity from './Quantity'
 import { useState } from 'react'
 import { urlForImage } from '@/sanity/lib/image'
 import toast, { Toaster } from 'react-hot-toast';
+import { useUser } from '@clerk/nextjs'
+import { HiOutlineExclamationCircle } from 'react-icons/hi'
+
 
 const AddOrder = ({ data }: { data: any }) => {
+    // Get User id from Clerk
+    const { user, isSignedIn } = useUser()
+
     const [quantity, setquantity] = useState(1)
     const AddOrder = async () => {
         try {
@@ -13,6 +19,7 @@ const AddOrder = ({ data }: { data: any }) => {
             const res = await fetch("/api/Orders", {
                 method: "POST",
                 body: JSON.stringify({
+                    user_id: user?.id,
                     product_id: data[0]._id,
                     title: data[0].title,
                     category: data[0].category,
@@ -36,7 +43,8 @@ const AddOrder = ({ data }: { data: any }) => {
                 <Quantity quantity={quantity} setquantity={setquantity} />
             </div>
             <div className="flex items-center gap-3">
-                <button className="flex justify-center items-center gap-x-3 bg-black text-white text-sm font-semibold sm:px-14 px-2 py-3 max-sm:w-2/5"
+                <button className="disabled:opacity-20 flex justify-center items-center gap-x-3 bg-black text-white text-sm font-semibold sm:px-14 px-2 py-3 max-sm:w-2/5"
+                    disabled={!isSignedIn}
                     onClick={() => {
                         const data = AddOrder()
                         toast.promise(data, {
@@ -50,7 +58,8 @@ const AddOrder = ({ data }: { data: any }) => {
                     <FiShoppingCart className="shrink-0" color="white" size={20} /> Add to Cart
                 </button>
                 <h3 className="text-2xl font-bold tracking-widest">${data[0].price}</h3>
-            </div >
+            </div>
+            {!isSignedIn && <h4 className='flex items-center gap-x-1 text-red-500 font-semibold -mt-6'> <HiOutlineExclamationCircle  size={20} className='-mt-0.5'/> Please Sign In First !</h4>}
         </>
 
     )

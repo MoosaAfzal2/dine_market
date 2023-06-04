@@ -17,14 +17,14 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <ClerkProvider>
-      <html lang="en" className='overflow-x-hidden'>
-        <body className={`${sora.className} overflow-x-hidden`}>
+    <html lang="en" className='overflow-x-hidden'>
+      <body className={`${sora.className} overflow-x-hidden`}>
+        <ClerkProvider>
           <Header />
           {children}
           <Footer />
-        </body>
-      </html>
-    </ClerkProvider >
+        </ClerkProvider >
+      </body>
+    </html>
   )
 }
