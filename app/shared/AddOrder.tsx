@@ -43,7 +43,7 @@ const AddOrder = ({ data }: { data: any }) => {
                 <Quantity quantity={quantity} setquantity={setquantity} />
             </div>
             <div className="flex items-center gap-3">
-                <button className="disabled:opacity-20 flex justify-center items-center gap-x-3 bg-black text-white text-sm font-semibold sm:px-14 px-2 py-3 max-sm:w-2/5"
+                <button className="disabled:opacity-20 flex justify-center items-center gap-x-3 bg-black text-white text-sm font-semibold sm:px-14 px-4 py-3"
                     disabled={!isSignedIn}
                     onClick={() => {
                         const data = AddOrder()

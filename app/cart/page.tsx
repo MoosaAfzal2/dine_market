@@ -7,6 +7,8 @@ import { useEffect, useState } from "react"
 import { useRouter } from 'next/navigation';
 import { checkout } from "@/app/lib/checkout"
 import { Toaster, toast } from 'react-hot-toast';
+import UpdateOrders from '../shared/UpdateOrders';
+import { HiOutlineExclamationCircle } from 'react-icons/hi';
 
 // fetcher function
 const fetcher = (url: string): Promise<OrderType[]> => fetch(url).then((res) => res.json());
@@ -18,6 +20,7 @@ export default function Cart() {
     const [quantity, setquantity] = useState(0)
     const [Total, setTotal] = useState(0)
     const [Data, setData] = useState<OrderType[]>()
+    const [Disable, setDisable] = useState(false)
     // Refresh Function
     const { refresh } = useRouter()
 
@@ -48,6 +51,8 @@ export default function Cart() {
             quantity!.quantity = quantity.quantity + 1;
         }
         setData(newdata);
+        // Disable Button
+        setDisable(true)
     }
 
     //  function to Decrease Quantity
@@ -58,8 +63,11 @@ export default function Cart() {
             quantity.quantity = quantity.quantity - 1;
         }
         setData(newdata);
+        // Disable Button
+        setDisable(true)
     }
 
+    // Handle Checout Function
     const HandleCheckout = async () => {
         return await checkout(Data!)
     }
@@ -120,17 +128,28 @@ export default function Cart() {
                                 <h4>Sub Total</h4>
                                 <h4>${Total}</h4>
                             </div>
-                            <button onClick={() => {
-                                const checkout = HandleCheckout();
-                                toast.promise(checkout, {
-                                    loading: 'Redirecting...',
-                                    success: 'Checkout Loaded',
-                                    error: 'Error when Redirecting',
-                                }, {
-                                    position: "top-right"
-                                });
 
-                            }} className="text-white bg-black text-sm font-semibold py-3">Process to Checkout</button>
+                            <div className='flex flex-col gap-2'>
+                                {/* Update Orders Button */}
+                                {Disable &&
+                                    <>
+                                        <h4 className='flex items-center leading-none gap-x-1 text-sm text-red-500 font-semibold'> <HiOutlineExclamationCircle size={20} className='-mt-0.5' />You have made Changes to Your Orders <br /> Please Update Your Orders First!</h4>
+                                        <UpdateOrders Data={Data!} mutate={mutate} SetDisable={setDisable} />
+                                    </>
+                                }
+                                {/* Checkout Button */}
+                                <button onClick={() => {
+                                    const checkout = HandleCheckout();
+                                    toast.promise(checkout, {
+                                        loading: 'Redirecting...',
+                                        success: 'Checkout Loaded',
+                                        error: 'Error when Redirecting',
+                                    }, {
+                                        position: "top-right"
+                                    });
+
+                                }} disabled={Disable} className={`disabled:opacity-20 disabled:cursor-not-allowed text-white bg-black text-sm font-semibold py-3`}>Process to Checkout</button>
+                            </div>
                         </div>
                     </div>
 

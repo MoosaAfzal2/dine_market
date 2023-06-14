@@ -1,10 +1,10 @@
 import Image from "next/image"
 import Logo from "@/public/Logo.png"
 import { CiSearch } from "react-icons/ci"
-import { FiShoppingCart } from "react-icons/fi"
 import Link from "next/link"
 import MobileHeader from "./MobileHeader"
-import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs"
+import { SignInButton, SignedIn, SignedOut, UserButton } from "@clerk/nextjs";
+import CartIcon from "@/app/shared/CartIcon"
 
 const Header = () => {
     return (
@@ -24,7 +24,7 @@ const Header = () => {
             </div>
 
             <div className="flex items-center gap-4">
-                <div>
+                <div className="max-lg:hidden">
                     <SignedIn>
                         <UserButton afterSignOutUrl="/" />
                     </SignedIn>
@@ -34,11 +34,8 @@ const Header = () => {
                         </SignInButton>
                     </SignedOut>
                 </div>
-
-                <Link href="/cart" className="bg-slate-200 relative rounded-full p-3 max-lg:hidden">
-                    <FiShoppingCart strokeWidth="2.5" size={20} />
-                    <span className="flex items-center justify-center text-white text-xs w-4 h-4 bg-red-500 absolute right-0 top-0 rounded-full">0</span>
-                </Link>
+                {/* Cart Icon */}
+               <CartIcon />
             </div>
 
             {/* Menu */}

@@ -1,8 +1,8 @@
 
 const Subscribe = () => {
     return (
-        <section className='flex justify-center items-center relative py-36'>
-            <h1 className='absolute text-[#f2f3f7] tracking-wide lg:text-[7rem] sm:text-8xl text-7xl leading-none font-black'>Newsletter</h1>
+        <section className='flex justify-center items-center relative sm:py-36 py-20'>
+            <h1 className='absolute text-[#f2f3f7] tracking-wide lg:text-[7rem] sm:text-8xl min-[470px]:text-7xl text-6xl leading-none font-black'>Newsletter</h1>
             <div className='flex flex-col text-center items-center gap-y-3 z-10'>
                 <h3 className='sm:text-[2rem] text-3xl tracking-wide font-bold'>Subscribe Our Newsletter</h3>
                 <p className='font-light text-black'>Get the latest information and promo offers directly</p>

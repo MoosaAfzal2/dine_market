@@ -5,7 +5,7 @@ import Image from "next/image"
 
 const Promotions = () => {
     return (
-        <section className="sm:py-24 2xl:px-32 xl:px-24 md:px-16 px-8">
+        <section className="sm:py-24 py-8 2xl:px-32 xl:px-24 md:px-16 px-8">
             <h4 className="text-center text-blue-600 text-sm font-semibold pb-3.5">PROMOTIONS</h4>
             <h2 className="text-center text-3xl font-bold pb-8">Our Promotions Events</h2>
             <div className="flex lg:flex-row flex-col gap-4">

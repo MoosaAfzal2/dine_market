@@ -19,7 +19,7 @@ const Products = async () => {
     return (
         <section className="lg:pt-8 sm:pb-24 2xl:px-32 xl:px-24 md:px-16 px-8">
             <h4 className="text-center text-blue-600 text-sm font-semibold pb-3.5">PRODUCTS</h4>
-            <h2 className="text-center text-3xl font-bold pb-8">Check What We Have</h2>
+            <h2 className="text-center text-3xl font-bold sm:pb-8 pb-4">Check What We Have</h2>
             <SwiperSlider data={data} />
         </section>
     )

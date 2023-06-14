@@ -65,12 +65,30 @@ export async function DELETE(request: NextRequest) {
         // delete one product
         if (req.id) {
             const data = await db.delete(OrdersTable).where(eq(OrdersTable.id, req.id));
-        } 
+        }
         // Empty cart by deleting all products of user_id
         else if (req.user_id) {
             const data = await db.delete(OrdersTable).where(eq(OrdersTable.user_id, req.user_id));
         }
         return NextResponse.json({ message: "Order deleted Successfully!" })
+    }
+    catch (error) {
+        console.log((error as { message: string }).message);
+        return NextResponse.json({ message: "Something Went Wrong!" })
+    }
+}
+
+export async function PATCH(request: NextRequest) {
+    const {Data} = await request.json()
+    try {
+        if (Data) {
+            for (const items of Data) {
+                await db.update(OrdersTable)
+                    .set({ quantity: items.quantity })
+                    .where(eq(OrdersTable.id, items.id));
+            }
+        }
+        return NextResponse.json({ message: "Orders Updated Successfully!" })
     }
     catch (error) {
         console.log((error as { message: string }).message);

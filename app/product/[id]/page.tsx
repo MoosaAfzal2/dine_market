@@ -59,10 +59,10 @@ const ProductDetails = async ({ params }: { params: { id: string } }) => {
                 </div>
             </div>
             {/* bottom Side */}
-            <div className="bg-white flex flex-col gap-8 mt-28 sm:px-14 px-8 py-20">
+            <div className="bg-white flex flex-col gap-8 mt-28 sm:px-14 py-20">
                 <div className="flex items-center border-b-2 border-[#c4c4c4] relative">
                     <h3 className="absolute text-2xl font-semibold">Product Information</h3>
-                    <h1 className='text-[#f2f3f7] xl:text-[7rem] sm:text-8xl text-7xl leading-none font-black'>Overview</h1>
+                    <h1 className='text-[#f2f3f7] xl:text-[7rem] sm:text-8xl min-[410px]:text-7xl text-5xl leading-none font-black max-[310px]:mb-4'>Overview</h1>
                 </div>
                 <div className="flex sm:flex-row flex-col max-sm:space-y-2 justify-between">
                     <h3 className="text-[#666] flex-1 font-semibold">PRODUCT DETAILS</h3>
