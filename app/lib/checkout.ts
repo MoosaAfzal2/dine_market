@@ -64,7 +64,7 @@ export const checkout = async (Products: OrderType[]) => {
         } else {
             console.log(error)
         }
-
+        
     } catch (error) {
         console.log(error)
     }

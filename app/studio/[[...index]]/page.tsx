@@ -11,7 +11,14 @@
 
 import { NextStudio } from 'next-sanity/studio'
 import config from '../../../sanity.config'
-
+import { useUser } from '@clerk/nextjs'
+"user_2QelmN4yf53ebRH9hX0Y5obYxUe"
 export default function StudioPage() {
-  return <NextStudio config={config} />
+  const { user, isSignedIn } = useUser()
+
+  if (isSignedIn && user?.id === "user_2QelmN4yf53ebRH9hX0Y5obYxUe") {
+    return <NextStudio config={config} />
+  } else {
+    return <div className='text-4xl font-semibold w-fit mx-auto py-16'>SORRY! You Do not have Access</div>
+  }
 }

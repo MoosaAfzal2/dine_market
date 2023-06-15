@@ -35,7 +35,7 @@ const Header = () => {
                     </SignedOut>
                 </div>
                 {/* Cart Icon */}
-               <CartIcon />
+                <CartIcon />
             </div>
 
             {/* Menu */}

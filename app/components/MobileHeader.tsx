@@ -25,8 +25,7 @@ const MobileHeader = () => {
                                 </SignInButton>
                             </SignedOut>
                         </div>
-                        
-                     <CartIcon />
+                        <CartIcon mobile={true} />
                     </div>
                     <li><Link href="/Female"> Female</Link></li>
                     <li><Link href="/Male">Male </Link></li>
