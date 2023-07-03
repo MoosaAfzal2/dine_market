@@ -6,7 +6,7 @@ import Stripe from 'stripe'
 // Creating new Stripe class instance 
 const stripe = new Stripe(`${process.env.STRIPE_SECRET_KEY!}`, { apiVersion: '2022-11-15' })
 
-export async function POST(request: NextRequest,res: NextApiRequest) {
+export async function POST(request: NextRequest, res: NextApiRequest) {
     try {
         // destructuring required data
         const { lineItems }: { lineItems: lineitemsType[] } = await request.json()
@@ -18,10 +18,14 @@ export async function POST(request: NextRequest,res: NextApiRequest) {
             mode: "payment",
             payment_method_types: ['card'],
             billing_address_collection: "auto",
+            shipping_options: [
+                { shipping_rate: "shr_1NK0UzJ4cO7SkcDjtE4yK5Q3" },
+                { shipping_rate: "shr_1NK0WsJ4cO7SkcDjiBqAP4DF" }
+            ],
             // Passing the data Here
             line_items: lineItems,
-            success_url: `https://dine-market-bay.vercel.app/checkout/success`,
-            cancel_url: `https://dine-market-bay.vercel.app/`,
+            success_url: `${request.headers.get("origin")}/checkout/success`,
+            cancel_url: `${request.headers.get("origin")}/`,
         })
 
         return NextResponse.json({ sessionId: session.id });
