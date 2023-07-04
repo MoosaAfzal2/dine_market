@@ -13,6 +13,7 @@ export async function GET(request: NextRequest) {
         // const user_id = cookies().get("user_id")?.value
         const { userId } = getAuth(request);
         const data: OrderType[] = await db.select().from(OrdersTable).where(eq(OrdersTable.user_id, userId as string))
+
         return NextResponse.json(data, {
             headers: {
                 'Access-Control-Allow-Origin': '*',
@@ -79,7 +80,7 @@ export async function DELETE(request: NextRequest) {
 }
 
 export async function PATCH(request: NextRequest) {
-    const {Data} = await request.json()
+    const { Data } = await request.json()
     try {
         if (Data) {
             for (const items of Data) {
