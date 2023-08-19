@@ -15,7 +15,18 @@ export const OrdersTable = pgTable("orders", {
 })
 
 
+export const ConfirmedOrdersTable = pgTable("confirmed_orders", {
+    id: serial("id").primaryKey().notNull(),
+    productId: varchar("productid", { length: 255 }).notNull(),
+    userId: varchar("userid", { length: 255 }).notNull(),
+    quantity: integer("quantity").notNull(),
+})
+
+
 export type OrderType = InferModel<typeof OrdersTable>
 export type NewOrderType = InferModel<typeof OrdersTable, "insert">
+
+export type ConfirmedOrderType = InferModel<typeof ConfirmedOrdersTable>
+export type NewConfirmedOrderType = InferModel<typeof ConfirmedOrdersTable, "insert">
 
 export const db = drizzle(sql)
