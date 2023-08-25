@@ -7,6 +7,7 @@ import toast, { Toaster } from 'react-hot-toast';
 import { useUser } from '@clerk/nextjs'
 import { HiOutlineExclamationCircle } from 'react-icons/hi'
 import { OrderType } from '../lib/Drizzle'
+import { mutate } from 'swr'
 
 
 const AddOrder = ({ data }: { data: any }) => {
@@ -28,6 +29,7 @@ const AddOrder = ({ data }: { data: any }) => {
                         }]
                     })
                 })
+                mutate("/api/Orders")
                 // else Add The Product
             } else {
                 const image_url = urlForImage(data[0].image[0].asset._ref).url();
@@ -43,6 +45,7 @@ const AddOrder = ({ data }: { data: any }) => {
                         image_url: image_url
                     })
                 })
+                mutate("/api/Orders")
                 return await res.json()
             }
         }
